@@ -1,4 +1,5 @@
-import { createGlobalStyle } from 'styled-components'
+import { createGlobalStyle } from 'styled-components';
+import 'antd/dist/antd.css';
 
 export default createGlobalStyle`
   *, *:after, *:before {
@@ -7,7 +8,6 @@ export default createGlobalStyle`
     padding: 0;
     font: inherit;
     color: inherit;
-    background-color: transparent;
     border: none;
   }
 
@@ -17,5 +17,6 @@ export default createGlobalStyle`
 
   body {
     padding: 24px;
+    background-color: ${({ theme }): string => theme.palette.main.primary};
   }
-`
+`;

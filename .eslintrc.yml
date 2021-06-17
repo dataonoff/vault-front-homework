@@ -1,0 +1,83 @@
+env:
+  browser: true
+  es6: true
+  jest: true
+extends:
+  - eslint:recommended
+  - plugin:@typescript-eslint/eslint-recommended
+  - plugin:@typescript-eslint/recommended
+  - plugin:prettier/recommended
+  - plugin:react/recommended
+  - plugin:import/errors
+  - plugin:import/warnings
+  - plugin:import/typescript
+parser: '@typescript-eslint/parser'
+parserOptions:
+  ecmaFeatures:
+    jsx: true
+  ecmaVersion: 2018
+  sourceType: module
+plugins:
+  - prettier
+  - react
+  - import
+  - '@typescript-eslint'
+settings:
+  react:
+    version: detect
+  import/resolver:
+    node:
+      paths: ["src"]
+rules:
+  '@typescript-eslint/ban-types':
+    - error
+    - types:
+        "{}": false
+  '@typescript-eslint/camelcase':
+    - off
+  '@typescript-eslint/explicit-function-return-type':
+    - error
+    - allowTypedFunctionExpressions: True
+  '@typescript-eslint/explicit-member-accessibility':
+    # We tend to avoid using classes and try to adopt a more functional style.
+    # We mostly use classes to declare React components. Component instances
+    # methods and attributes shouldn't be used directly anyways.
+    - off
+  '@typescript-eslint/indent':
+    # Handled by prettier
+    - off
+  '@typescript-eslint/naming-convention':
+    - error
+    - selector: interface
+      format: ['PascalCase']
+      custom:
+        regex: "^I[A-Z]"
+        match: true
+  '@typescript-eslint/no-use-before-define':
+    # This rule is kind of wonky
+    - off
+  import/no-unresolved:
+    - off
+  eqeqeq:
+    - error
+    - always
+  import/order:
+    - error
+    - newlines-between: always
+      alphabetize:
+        order: asc
+  import/named:
+    # Bug: Interface exports get ignored.
+    # See https://github.com/benmosher/eslint-plugin-import/issues/1120
+    - off
+  prettier/prettier:
+    - error
+    - printWidth: 99
+      singleQuote: true
+      trailingComma: all
+      arrowParens: avoid
+      endOfLine: auto
+  react/prop-types:
+    # Using TS
+    - off
+  no-console: 1
